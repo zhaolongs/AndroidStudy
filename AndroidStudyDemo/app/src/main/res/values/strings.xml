@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">AndroidStudyApplication</string>
+
+    <string name="hello">这是第一个测试应用</string>
+</resources>
