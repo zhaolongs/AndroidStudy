@@ -1,5 +1,6 @@
-package com.example.studyapp;
+package com.example.studyapp.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.view.View;
@@ -7,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.example.studyapp.activity.MainActivity;
+import com.example.studyapp.R;
 import com.example.studyapp.bean.PhoneBean;
 
 import java.util.List;
@@ -16,7 +19,7 @@ public class PhoneListAdapter extends BaseAdapter {
     List<PhoneBean> mPhoneBeanList;
     Context mContext;
 
-    public PhoneListAdapter(List<PhoneBean> phoneBeanList, MainActivity mainActivity) {
+    public PhoneListAdapter(List<PhoneBean> phoneBeanList, Activity mainActivity) {
         mPhoneBeanList = phoneBeanList;
         mContext = mainActivity;
     }

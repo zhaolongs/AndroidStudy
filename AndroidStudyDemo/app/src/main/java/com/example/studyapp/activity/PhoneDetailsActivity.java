@@ -1,13 +1,7 @@
-package com.example.studyapp;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
+package com.example.studyapp.activity;
 
 import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -15,9 +9,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.studyapp.R;
+import com.example.studyapp.base.BaseActivity;
 import com.example.studyapp.bean.PhoneBean;
+import com.example.studyapp.interfac.PermissionInterface;
 
-public class PhoneDetailsActivity extends AppCompatActivity implements View.OnClickListener {
+public class PhoneDetailsActivity extends BaseActivity implements View.OnClickListener {
 
     private String phone;
     private PhoneBean phoneBean;
@@ -55,10 +52,18 @@ public class PhoneDetailsActivity extends AppCompatActivity implements View.OnCl
         switch (v.getId()) {
             case R.id.tv_phone:
                 //检查是否有权限
-                boolean permisson = checkPermisson();
-                if (permisson) {
-                    callPhone(phone);
-                }
+                checkPermisson(new PermissionInterface() {
+                    @Override
+                    public void onPass(int requestCode) {
+                        callPhone(phone);
+                    }
+
+                    @Override
+                    public void noPass(int requestCode) {
+                        Toast.makeText(PhoneDetailsActivity.this, "没有同意使用权限", Toast.LENGTH_LONG).show();
+                    }
+                }, Manifest.permission.CALL_PHONE, 101,true);
+
                 break;
             case R.id.lv_phone:
                 callDialPhone(phone);
@@ -67,30 +72,6 @@ public class PhoneDetailsActivity extends AppCompatActivity implements View.OnCl
 
     }
 
-    private boolean checkPermisson() {
-        //检查是否有权限
-        int checkSelfPermission = ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE);
-        if (checkSelfPermission == PackageManager.PERMISSION_GRANTED) {
-            return true;
-        } else {
-            //申请
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, 101);
-            return false;
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(requestCode==101){
-            if(permissions.length!=0&&grantResults[0]!=PackageManager.PERMISSION_GRANTED){
-                //没有通过权限
-                Toast.makeText(this,"没有拨打电话的权限",Toast.LENGTH_LONG).show();
-            }else{
-                callPhone(phone);
-            }
-        }
-    }
 
     /**
      * Android 6.0 以上 需要动态申请权限
@@ -118,4 +99,5 @@ public class PhoneDetailsActivity extends AppCompatActivity implements View.OnCl
         intent.setData(data);
         startActivity(intent);
     }
+
 }

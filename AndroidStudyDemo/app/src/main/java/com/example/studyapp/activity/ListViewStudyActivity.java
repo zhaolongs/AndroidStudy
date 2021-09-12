@@ -1,4 +1,4 @@
-package com.example.studyapp;
+package com.example.studyapp.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,26 +7,27 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 
+import com.example.studyapp.R;
+import com.example.studyapp.adapter.PhoneListAdapter;
 import com.example.studyapp.bean.PhoneBean;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+/**
+ * 通话记录中心 ListView
+ */
+public class ListViewStudyActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         System.out.println("程序启动");
         //第一步 布局文件中 引用 ListView
-        setContentView(R.layout.activity_list1);
+        setContentView(R.layout.activity_list_view_study);
         //第二步 获取 ListView
         ListView listView = findViewById(R.id.listview);
         //第三步 数据
@@ -70,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                  * 参数一 当前 Activity 实例
                  * 参数二 将要打开 的页面
                  */
-                Intent intent = new Intent(MainActivity.this,PhoneDetailsActivity.class);
+                Intent intent = new Intent(ListViewStudyActivity.this,PhoneDetailsActivity.class);
 
                 //参数
                 intent.putExtra("phone",phone);
@@ -79,13 +80,9 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("people",phoneBean);
 
                 //开启一个新的Activity
-                MainActivity.this.startActivity(intent);
+                ListViewStudyActivity.this.startActivity(intent);
 
             }
         });
-
-
-
-
     }
 }

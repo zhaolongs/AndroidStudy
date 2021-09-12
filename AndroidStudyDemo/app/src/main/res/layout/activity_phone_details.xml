@@ -7,7 +7,7 @@
     android:background="#F1F2F6"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context=".PhoneDetailsActivity">
+    tools:context=".activity.PhoneDetailsActivity">
 
     <LinearLayout
         android:layout_width="100dp"
