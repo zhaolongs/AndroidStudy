@@ -1,4 +1,4 @@
-package com.example.studyapp.adapter;
+package com.example.studyapp.common.acapter;
 
 import android.app.Activity;
 import android.content.Context;
@@ -8,18 +8,20 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.example.studyapp.activity.MainActivity;
 import com.example.studyapp.R;
-import com.example.studyapp.bean.PhoneBean;
+import com.example.studyapp.common.bean.CatalogueBean;
 
 import java.util.List;
 
-public class PhoneListAdapter extends BaseAdapter {
+/**
+ * 导航目录使用
+ */
+public class CatalogueListAdapter extends BaseAdapter {
     //列表数据
-    List<PhoneBean> mPhoneBeanList;
+    List<CatalogueBean> mPhoneBeanList;
     Context mContext;
 
-    public PhoneListAdapter(List<PhoneBean> phoneBeanList, Activity mainActivity) {
+    public CatalogueListAdapter(List<CatalogueBean> phoneBeanList, Activity mainActivity) {
         mPhoneBeanList = phoneBeanList;
         mContext = mainActivity;
     }
@@ -73,11 +75,10 @@ public class PhoneListAdapter extends BaseAdapter {
         if (convertView == null) {
             Log.d("ListView","新创建 View "+position);
 
-            inflate = View.inflate(mContext, R.layout.activity_list1_item, null);
+            inflate = View.inflate(mContext, R.layout.catalogue_list_item, null);
             listViewHolder = new ListViewHolder();
-            listViewHolder.userNameTextView = inflate.findViewById(R.id.tv_user_name);
-            listViewHolder.userAddrTextView = inflate.findViewById(R.id.tv_user_addre);
-            listViewHolder.userTimeTextView = inflate.findViewById(R.id.tv_time);
+            listViewHolder.catalogueTextView = inflate.findViewById(R.id.tv_catalog_name);
+            listViewHolder.catalogueIndexTextView = inflate.findViewById(R.id.tv_catalog_index);
             inflate.setTag(listViewHolder);
         } else {
             Log.e("ListView","复用 View "+position);
@@ -85,7 +86,7 @@ public class PhoneListAdapter extends BaseAdapter {
             listViewHolder = (ListViewHolder) inflate.getTag();
         }
         //获取当前条目 数据
-        PhoneBean phoneBean = mPhoneBeanList.get(position);
+        CatalogueBean phoneBean = mPhoneBeanList.get(position);
 
         listViewHolder.setDataFunction(phoneBean, position);
 
@@ -94,14 +95,12 @@ public class PhoneListAdapter extends BaseAdapter {
     }
 
     private class ListViewHolder {
-        TextView userNameTextView;
-        TextView userAddrTextView;
-        TextView userTimeTextView;
+        TextView catalogueTextView;
+        TextView catalogueIndexTextView;
 
-        public void setDataFunction(PhoneBean phoneBean, int position) {
-            userNameTextView.setText(phoneBean.userName + " " + position);
-            userAddrTextView.setText(phoneBean.userAddress);
-            userTimeTextView.setText(phoneBean.createTime + "");
+        public void setDataFunction(CatalogueBean catalogueBean, int position) {
+            catalogueTextView.setText(catalogueBean.pageName + " " );
+            catalogueIndexTextView.setText((position+1)+"");
         }
     }
 

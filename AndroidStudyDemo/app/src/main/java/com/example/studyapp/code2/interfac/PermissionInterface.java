@@ -1,4 +1,4 @@
-package com.example.studyapp.interfac;
+package com.example.studyapp.code2.interfac;
 
 public interface PermissionInterface {
     void onPass(int requestCode);

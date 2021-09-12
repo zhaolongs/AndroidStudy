@@ -1,4 +1,4 @@
-package com.example.studyapp.activity;
+package com.example.studyapp.code2.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,8 +10,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.studyapp.R;
-import com.example.studyapp.adapter.PhoneListAdapter;
-import com.example.studyapp.bean.PhoneBean;
+import com.example.studyapp.code2.adapter.PhoneListAdapter;
+import com.example.studyapp.code2.bean.PhoneBean;
 
 import java.util.ArrayList;
 import java.util.Date;

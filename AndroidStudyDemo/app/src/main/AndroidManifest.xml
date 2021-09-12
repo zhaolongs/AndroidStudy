@@ -12,16 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidStudyApplication" >
         <activity
-            android:name=".activity.ListViewStudyActivity"
+            android:name=".code2.activity.ListViewStudyActivity"
             android:exported="true" />
         <activity
             android:name=".base.BaseActivity"
             android:exported="true" />
         <activity
-            android:name=".activity.PhoneDetailsActivity"
+            android:name=".code2.activity.PhoneDetailsActivity"
             android:exported="true" />
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".common.activity.MainActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

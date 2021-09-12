@@ -1,4 +1,4 @@
-package com.example.studyapp.bean;
+package com.example.studyapp.common.bean;
 
 public class CatalogueBean {
     public String pageName;

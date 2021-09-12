@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#F1F2F6"
     android:orientation="vertical"
-    tools:context=".activity.PhoneDetailsActivity">
+    tools:context=".code2.activity.PhoneDetailsActivity">
 
     <ScrollView
         android:fillViewport="true"

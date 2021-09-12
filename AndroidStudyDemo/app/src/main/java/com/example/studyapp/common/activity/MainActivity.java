@@ -1,4 +1,4 @@
-package com.example.studyapp.activity;
+package com.example.studyapp.common.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,8 +10,9 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.studyapp.R;
-import com.example.studyapp.adapter.CatalogueListAdapter;
-import com.example.studyapp.bean.CatalogueBean;
+import com.example.studyapp.code2.activity.ListViewStudyActivity;
+import com.example.studyapp.common.acapter.CatalogueListAdapter;
+import com.example.studyapp.common.bean.CatalogueBean;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.example.studyapp.activity;
+package com.example.studyapp.code2.activity;
 
 import android.Manifest;
 import android.content.Intent;
@@ -11,8 +11,8 @@ import android.widget.Toast;
 
 import com.example.studyapp.R;
 import com.example.studyapp.base.BaseActivity;
-import com.example.studyapp.bean.PhoneBean;
-import com.example.studyapp.interfac.PermissionInterface;
+import com.example.studyapp.code2.bean.PhoneBean;
+import com.example.studyapp.code2.interfac.PermissionInterface;
 
 public class PhoneDetailsActivity extends BaseActivity implements View.OnClickListener {
 

@@ -1,4 +1,4 @@
-package com.example.studyapp.adapter;
+package com.example.studyapp.code2.adapter;
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,19 +9,16 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.studyapp.R;
-import com.example.studyapp.bean.CatalogueBean;
+import com.example.studyapp.code2.bean.PhoneBean;
 
 import java.util.List;
 
-/**
- * 导航目录使用
- */
-public class CatalogueListAdapter extends BaseAdapter {
+public class PhoneListAdapter extends BaseAdapter {
     //列表数据
-    List<CatalogueBean> mPhoneBeanList;
+    List<PhoneBean> mPhoneBeanList;
     Context mContext;
 
-    public CatalogueListAdapter(List<CatalogueBean> phoneBeanList, Activity mainActivity) {
+    public PhoneListAdapter(List<PhoneBean> phoneBeanList, Activity mainActivity) {
         mPhoneBeanList = phoneBeanList;
         mContext = mainActivity;
     }
@@ -75,10 +72,11 @@ public class CatalogueListAdapter extends BaseAdapter {
         if (convertView == null) {
             Log.d("ListView","新创建 View "+position);
 
-            inflate = View.inflate(mContext, R.layout.catalogue_list_item, null);
+            inflate = View.inflate(mContext, R.layout.activity_list1_item, null);
             listViewHolder = new ListViewHolder();
-            listViewHolder.catalogueTextView = inflate.findViewById(R.id.tv_catalog_name);
-            listViewHolder.catalogueIndexTextView = inflate.findViewById(R.id.tv_catalog_index);
+            listViewHolder.userNameTextView = inflate.findViewById(R.id.tv_user_name);
+            listViewHolder.userAddrTextView = inflate.findViewById(R.id.tv_user_addre);
+            listViewHolder.userTimeTextView = inflate.findViewById(R.id.tv_time);
             inflate.setTag(listViewHolder);
         } else {
             Log.e("ListView","复用 View "+position);
@@ -86,7 +84,7 @@ public class CatalogueListAdapter extends BaseAdapter {
             listViewHolder = (ListViewHolder) inflate.getTag();
         }
         //获取当前条目 数据
-        CatalogueBean phoneBean = mPhoneBeanList.get(position);
+        PhoneBean phoneBean = mPhoneBeanList.get(position);
 
         listViewHolder.setDataFunction(phoneBean, position);
 
@@ -95,12 +93,14 @@ public class CatalogueListAdapter extends BaseAdapter {
     }
 
     private class ListViewHolder {
-        TextView catalogueTextView;
-        TextView catalogueIndexTextView;
+        TextView userNameTextView;
+        TextView userAddrTextView;
+        TextView userTimeTextView;
 
-        public void setDataFunction(CatalogueBean catalogueBean, int position) {
-            catalogueTextView.setText(catalogueBean.pageName + " " );
-            catalogueIndexTextView.setText((position+1)+"");
+        public void setDataFunction(PhoneBean phoneBean, int position) {
+            userNameTextView.setText(phoneBean.userName + " " + position);
+            userAddrTextView.setText(phoneBean.userAddress);
+            userTimeTextView.setText(phoneBean.createTime + "");
         }
     }
 

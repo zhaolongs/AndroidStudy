@@ -15,7 +15,7 @@ import android.os.Bundle;
 import android.provider.Settings;
 
 
-import com.example.studyapp.interfac.PermissionInterface;
+import com.example.studyapp.code2.interfac.PermissionInterface;
 
 public class BaseActivity extends AppCompatActivity {
     private Context mContext;
