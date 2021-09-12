@@ -10,14 +10,15 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.studyapp.R;
-import com.example.studyapp.adapter.PhoneListAdapter;
-import com.example.studyapp.bean.PhoneBean;
+import com.example.studyapp.adapter.CatalogueListAdapter;
+import com.example.studyapp.bean.CatalogueBean;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    private List<CatalogueBean> mCatalogueBeanList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,21 +29,18 @@ public class MainActivity extends AppCompatActivity {
         //第二步 获取 ListView
         ListView listView = findViewById(R.id.listview);
         //第三步 数据
-        List<PhoneBean> phoneBeanList = new ArrayList<>();
-        for (int i = 0; i < 1000; i++) {
-            PhoneBean phoneBean = new PhoneBean();
-            phoneBean.userName="早起的年轻人 "+i;
-            phoneBean.userAddress="中图 北京";
-            phoneBean.phone="133454545";
-            phoneBean.createTime = new Date().getTime();
-            phoneBeanList.add(phoneBean);
-        }
+        mCatalogueBeanList = new ArrayList<>();
+
+        addPageDataFunction();
+
+
         //第四步 创建适配器
-        PhoneListAdapter phoneListAdapter = new PhoneListAdapter(phoneBeanList,this);
+        CatalogueListAdapter phoneListAdapter = new CatalogueListAdapter(mCatalogueBeanList, this);
 
         //第五步 关联 ListView
         listView.setAdapter(phoneListAdapter);
-//第六步 设置点击事件
+
+        //第六步 设置点击事件
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             /**
              *
@@ -54,34 +52,29 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Log.d("ListView","点击了ListView "+position);
+                Log.d("ListView", "点击了ListView " + position);
 
                 //获取列表对应的数据
-                PhoneBean phoneBean = phoneBeanList.get(position);
-                //获取电话号
-                String phone = phoneBean.phone;
-
-
-
+                CatalogueBean catalogueBean = mCatalogueBeanList.get(position);
                 /**
                  * 参数一 当前 Activity 实例
                  * 参数二 将要打开 的页面
                  */
-                Intent intent = new Intent(MainActivity.this,PhoneDetailsActivity.class);
-
-                //参数
-                intent.putExtra("phone",phone);
-
-                //传递对象
-                intent.putExtra("people",phoneBean);
-
+                Intent intent = new Intent(MainActivity.this, catalogueBean.aClass);
                 //开启一个新的Activity
                 MainActivity.this.startActivity(intent);
 
             }
         });
+    }
 
+    /**
+     * 添加数据
+     */
+    private void addPageDataFunction() {
 
+        CatalogueBean catalogueBean = new CatalogueBean("通话记录 - ListView ", ListViewStudyActivity.class);
 
+        mCatalogueBeanList.add(catalogueBean);
     }
 }
