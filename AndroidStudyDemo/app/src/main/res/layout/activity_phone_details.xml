@@ -5,131 +5,151 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F1F2F6"
-    android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context=".activity.PhoneDetailsActivity">
 
-    <LinearLayout
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/bg_detaip_title_shape"
-        android:gravity="center">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="早"
-            android:textColor="#ffffff"
-            android:textSize="44sp" />
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/tv_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="早起的年轻人"
-        android:textColor="#000000"
-        android:textSize="23sp" />
-
-    <LinearLayout
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
+    <ScrollView
+        android:fillViewport="true"
+        android:fadeScrollbars="false"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:orientation="horizontal">
+        android:layout_height="match_parent">
 
-        <LinearLayout style="@style/phone_flag_layout_style">
+        <LinearLayout
+            android:layout_marginBottom="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="6dp"
-                android:src="@mipmap/message_icon" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="信息" />
+            <LinearLayout
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_detaip_title_shape"
+                android:gravity="center">
 
-        </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="早"
+                    android:textColor="#ffffff"
+                    android:textSize="44sp" />
 
-        <LinearLayout style="@style/phone_flag_layout_style" android:id="@+id/lv_phone">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="6dp"
-                android:src="@mipmap/phone_icon" />
+            </LinearLayout>
 
             <TextView
+                android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="电话" />
+                android:layout_marginTop="16dp"
+                android:text="早起的年轻人"
+                android:textColor="#000000"
+                android:textSize="23sp" />
 
-        </LinearLayout>
-        <LinearLayout style="@style/phone_flag_layout_style">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="6dp"
-                android:src="@mipmap/video_icon" />
-
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="视频" />
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp">
 
-        </LinearLayout>
-        <LinearLayout style="@style/phone_flag_layout_style">
+                <LinearLayout style="@style/phone_flag_layout_style">
 
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="6dp"
-                android:src="@mipmap/emal_icon" />
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginTop="6dp"
+                        android:src="@mipmap/message_icon" />
 
-            <TextView
-                android:layout_width="wrap_content"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="信息" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lv_phone"
+                    style="@style/phone_flag_layout_style">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginTop="6dp"
+                        android:src="@mipmap/phone_icon" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="电话" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/phone_flag_layout_style">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginTop="6dp"
+                        android:src="@mipmap/video_icon" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="视频" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/phone_flag_layout_style">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginTop="6dp"
+                        android:src="@mipmap/emal_icon" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="邮件" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="邮件" />
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/bg_detaip_flag_shape"
+                android:orientation="vertical"
+                android:padding="10dp">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="电话"
+                    android:textColor="#000000"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="133454676567"
+                    android:textColor="#2196F3" />
+
+            </LinearLayout>
         </LinearLayout>
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="16dp"
-        android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:padding="10dp"
-        android:background="@drawable/bg_detaip_flag_shape"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:text="电话"
-            android:textColor="#000000"
-            android:textSize="16sp"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/tv_phone"
-            android:layout_width="wrap_content"
-            android:text="133454676567"
-            android:textColor="#2196F3"
-            android:layout_marginTop="4dp"
-            android:layout_height="wrap_content"/>
-
-    </LinearLayout>
+    </ScrollView>
 </LinearLayout>
