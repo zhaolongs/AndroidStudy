@@ -72,6 +72,12 @@ public class PhoneListAdapter extends BaseAdapter {
         if (convertView == null) {
             Log.d("ListView","新创建 View "+position);
 
+            /**
+             * 将 Layout 文件 加载 View
+             * 参数一 上下文对象
+             * 参数二 布局文件 ID
+             * 参数三 不为null 时自动将这个布局文件 加载到这个 root 中去  null 代表不添加
+             */
             inflate = View.inflate(mContext, R.layout.activity_list1_item, null);
             listViewHolder = new ListViewHolder();
             listViewHolder.userNameTextView = inflate.findViewById(R.id.tv_user_name);

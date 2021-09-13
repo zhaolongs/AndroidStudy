@@ -11,6 +11,7 @@ import android.widget.ListView;
 
 import com.example.studyapp.R;
 import com.example.studyapp.code2.activity.ListViewStudyActivity;
+import com.example.studyapp.code3.activity.RecyclerViewStudyActivity;
 import com.example.studyapp.common.acapter.CatalogueListAdapter;
 import com.example.studyapp.common.bean.CatalogueBean;
 
@@ -74,8 +75,10 @@ public class MainActivity extends AppCompatActivity {
      */
     private void addPageDataFunction() {
 
-        CatalogueBean catalogueBean = new CatalogueBean("通话记录 - ListView ", ListViewStudyActivity.class);
+        CatalogueBean  listBean = new CatalogueBean("通话记录 - ListView ", ListViewStudyActivity.class);
+        CatalogueBean recyBean = new CatalogueBean("通话记录 - RecyclerView ", RecyclerViewStudyActivity.class);
 
-        mCatalogueBeanList.add(catalogueBean);
+        mCatalogueBeanList.add(listBean);
+        mCatalogueBeanList.add(recyBean);
     }
 }
