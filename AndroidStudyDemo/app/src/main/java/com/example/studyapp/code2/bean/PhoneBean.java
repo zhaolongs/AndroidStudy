@@ -7,4 +7,5 @@ public class PhoneBean implements Serializable {
     public String userAddress;
     public long createTime;
     public String phone;
+    public int image;
 }
