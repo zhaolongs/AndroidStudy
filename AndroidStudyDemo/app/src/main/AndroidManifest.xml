@@ -36,6 +36,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".code3.activity.RecyclerViewHorizontalActivity" />
+        <activity android:name=".code3.activity.RecyclerViewGridActivity" />
+        <activity android:name=".code3.activity.RecyclerViewStaggeredGridActivity" />
     </application>
 
 </manifest>

@@ -3,8 +3,10 @@ package com.example.studyapp.code3.activity;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.example.studyapp.R;
 import com.example.studyapp.code2.bean.PhoneBean;
@@ -15,11 +17,9 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * 02 RecyclerView 的基本使用 列表数据展示
- *    子 Item 显示图片
- *    水平方向滑动展示
+ * 04 RecyclerView 瀑布流数据展示
  */
-public class RecyclerViewHorizontalActivity extends AppCompatActivity {
+public class RecyclerViewStaggeredGridActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +39,7 @@ public class RecyclerViewHorizontalActivity extends AppCompatActivity {
             if (i % 3 == 0) {
                 phoneBean.image = R.mipmap.banner01;
             } else if (i % 3 == 1) {
-                phoneBean.image = R.mipmap.banner03;
+                phoneBean.image = R.mipmap.banner02;
             } else {
                 phoneBean.image = R.mipmap.banner03;
             }
@@ -47,13 +47,27 @@ public class RecyclerViewHorizontalActivity extends AppCompatActivity {
             phoneBeanList.add(phoneBean);
         }
         //第四步 创建适配器
-        PhoneRecyImgAdapter phoneListAdapter = new PhoneRecyImgAdapter(phoneBeanList, this, false);
+        PhoneRecyImgAdapter phoneListAdapter = new PhoneRecyImgAdapter(phoneBeanList, this,true);
 
         //多了一步 设置为 列表显示
+
+        //线性
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         //设置水平方向
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        recyclerView.setLayoutManager(linearLayoutManager);
+
+        //来个宫格
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3) ;
+        gridLayoutManager.setOrientation(RecyclerView.VERTICAL);
+
+        //来个瀑布流
+        //参数一 列数
+        //参数二 方向
+        StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
+
+
+
+        recyclerView.setLayoutManager(staggeredGridLayoutManager);
 
         //第五步 关联 ListView
         recyclerView.setAdapter(phoneListAdapter);

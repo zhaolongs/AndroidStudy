@@ -33,9 +33,17 @@ public class RecyclerViewStudyActivity extends AppCompatActivity {
         findViewById(R.id.bt_recy_list3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                RecyclerViewStudyActivity.this.startActivity(new Intent(RecyclerViewStudyActivity.this, RecyclerViewGridActivity.class));
             }
         });
+        findViewById(R.id.bt_recy_list4).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RecyclerViewStudyActivity.this.startActivity(new Intent(RecyclerViewStudyActivity.this, RecyclerViewStaggeredGridActivity.class));
+            }
+        });
+
+
 
     }
 }

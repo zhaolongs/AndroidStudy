@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,10 +22,15 @@ import java.util.List;
 public class PhoneRecyImgAdapter extends RecyclerView.Adapter {
     private List<PhoneBean> mPhoneBeanList;
     private Context mContext;
+    /**
+     * true 时为瀑布流
+     */
+    private boolean mIsStaggere;
 
-    public PhoneRecyImgAdapter(List<PhoneBean> phoneBeanList, Context context) {
+    public PhoneRecyImgAdapter(List<PhoneBean> phoneBeanList, Context context, boolean isStaggere) {
         mPhoneBeanList = phoneBeanList;
         mContext = context;
+        mIsStaggere = isStaggere;
     }
 
     /**
@@ -50,8 +56,13 @@ public class PhoneRecyImgAdapter extends RecyclerView.Adapter {
          * 参数二 不为null 时 会测量这个 parent 的大小来 作为 inflate 的父组件大小参考
          * 参数三 true 将加载的 layout 布局文件 自动添加到 parent 中去
          */
-        View inflate = layoutInflater.inflate(R.layout.activity_list2_item, parent,false);
-        CustomHolder customHolder = new CustomHolder(inflate);
+        int layoutId = R.layout.activity_list2_item;
+        if (mIsStaggere) {
+            //瀑布流使用 需要填充
+            layoutId = R.layout.activity_list2_item;
+        }
+        View inflate = layoutInflater.inflate(layoutId, parent, false);
+        CustomHolder customHolder = new CustomHolder(inflate, mIsStaggere);
         return customHolder;
     }
 
@@ -87,11 +98,21 @@ public class PhoneRecyImgAdapter extends RecyclerView.Adapter {
 
         TextView userNameTextView;
         ImageView userImageView;
+        LinearLayout rootLayout;
 
-        public CustomHolder(@NonNull View itemView) {
+
+        public CustomHolder(@NonNull View itemView, boolean isStaggere) {
             super(itemView);
+
             userNameTextView = itemView.findViewById(R.id.tv_user_name);
             userImageView = itemView.findViewById(R.id.iv_user_image);
+
+            rootLayout = itemView.findViewById(R.id.layout_item);
+            if (isStaggere) {
+                //计算一个随机的高度
+                ViewGroup.LayoutParams layoutParams = rootLayout.getLayoutParams();
+                layoutParams.height = (int) (400 + Math.random() * 400);
+            }
         }
 
         /**
