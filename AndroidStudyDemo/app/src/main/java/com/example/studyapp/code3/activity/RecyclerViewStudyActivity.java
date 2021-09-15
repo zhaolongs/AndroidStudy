@@ -27,7 +27,7 @@ public class RecyclerViewStudyActivity extends AppCompatActivity {
         findViewById(R.id.bt_recy_list2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RecyclerViewStudyActivity.this.startActivity(new Intent(RecyclerViewStudyActivity.this, RecyclerViewStudyGridActivity.class));
+                RecyclerViewStudyActivity.this.startActivity(new Intent(RecyclerViewStudyActivity.this, RecyclerViewHorizontalActivity.class));
             }
         });
         findViewById(R.id.bt_recy_list3).setOnClickListener(new View.OnClickListener() {

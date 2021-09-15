@@ -15,7 +15,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class RecyclerViewStudyGridActivity extends AppCompatActivity {
+/**
+ * 02 RecyclerView 的基本使用 列表数据展示
+ *    子 Item 显示图片
+ *    水平方向滑动展示
+ */
+public class RecyclerViewHorizontalActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

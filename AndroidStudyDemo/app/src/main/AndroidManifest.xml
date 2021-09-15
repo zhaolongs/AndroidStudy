@@ -35,7 +35,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".code3.activity.RecyclerViewStudyGridActivity" />
+        <activity android:name=".code3.activity.RecyclerViewHorizontalActivity" />
     </application>
 
 </manifest>

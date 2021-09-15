@@ -16,6 +16,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * 01 RecyclerView 的基本使用 列表数据展示
+ */
 public class RecyclerViewStudyListActivity extends AppCompatActivity {
 
     @Override
