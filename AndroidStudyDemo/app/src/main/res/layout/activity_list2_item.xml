@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="#eeeeee"
     android:gravity="center_horizontal"
     android:orientation="vertical"
@@ -13,7 +13,7 @@
     <LinearLayout
         android:id="@+id/layout_item"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_margin="5dp"
         android:background="@drawable/bg_detaip_flag_shape"
         android:gravity="center_vertical"
@@ -23,7 +23,8 @@
         <ImageView
             android:id="@+id/iv_user_image"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:scaleType="centerCrop"
             android:src="@mipmap/banner01" />
 

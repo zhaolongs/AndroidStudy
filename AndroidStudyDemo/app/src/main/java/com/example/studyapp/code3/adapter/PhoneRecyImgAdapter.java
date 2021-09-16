@@ -20,6 +20,15 @@ import java.util.List;
  * recyclerView 使用数据适配器
  */
 public class PhoneRecyImgAdapter extends RecyclerView.Adapter {
+
+    public interface PhoneRecyInterface {
+        void onItemClick(PhoneBean phoneBean, int position);
+    }
+
+    /**
+     * 点击事件回调
+     */
+    private  PhoneRecyInterface mPhoneRecyInterface;
     private List<PhoneBean> mPhoneBeanList;
     private Context mContext;
     /**
@@ -31,6 +40,14 @@ public class PhoneRecyImgAdapter extends RecyclerView.Adapter {
         mPhoneBeanList = phoneBeanList;
         mContext = context;
         mIsStaggere = isStaggere;
+    }
+
+    /**
+     * 点击事件
+     * @param mPhoneRecyInterface
+     */
+    public void setmPhoneRecyInterface(PhoneRecyInterface mPhoneRecyInterface) {
+        this.mPhoneRecyInterface = mPhoneRecyInterface;
     }
 
     /**
@@ -81,7 +98,7 @@ public class PhoneRecyImgAdapter extends RecyclerView.Adapter {
         PhoneBean phoneBean = mPhoneBeanList.get(position);
 
         //设置数据显示
-        customHolder.setData(phoneBean, position);
+        customHolder.setData(phoneBean, position,mIsStaggere,mPhoneRecyInterface);
     }
 
     /**
@@ -98,32 +115,36 @@ public class PhoneRecyImgAdapter extends RecyclerView.Adapter {
 
         TextView userNameTextView;
         ImageView userImageView;
-        LinearLayout rootLayout;
-
 
         public CustomHolder(@NonNull View itemView, boolean isStaggere) {
             super(itemView);
-
             userNameTextView = itemView.findViewById(R.id.tv_user_name);
             userImageView = itemView.findViewById(R.id.iv_user_image);
-
-            rootLayout = itemView.findViewById(R.id.layout_item);
-            if (isStaggere) {
-                //计算一个随机的高度
-                ViewGroup.LayoutParams layoutParams = rootLayout.getLayoutParams();
-                layoutParams.height = (int) (400 + Math.random() * 400);
-            }
         }
 
         /**
          * 设置数据显示
-         *
-         * @param phoneBean
+         *  @param phoneBean
          * @param position
+         * @param mPhoneRecyInterface
          */
-        public void setData(PhoneBean phoneBean, int position) {
+        public void setData(PhoneBean phoneBean, int position, boolean isStaggere, PhoneRecyInterface mPhoneRecyInterface) {
             userNameTextView.setText(phoneBean.userName + " " + position);
             userImageView.setImageResource(phoneBean.image);
+
+            if (isStaggere) {
+                //计算一个随机的高度
+                ViewGroup.LayoutParams layoutParams = itemView.getLayoutParams();
+                layoutParams.height = (int) (400 + Math.random() * 400);
+            }
+            if(mPhoneRecyInterface!=null){
+                itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mPhoneRecyInterface.onItemClick(phoneBean,position);
+                    }
+                });
+            }
         }
     }
 }
