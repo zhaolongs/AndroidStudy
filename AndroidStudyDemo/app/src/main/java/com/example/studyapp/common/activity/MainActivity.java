@@ -10,8 +10,10 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.studyapp.R;
+import com.example.studyapp.code00.activity.AllViewStudyActivity;
 import com.example.studyapp.code2.activity.ListViewStudyActivity;
 import com.example.studyapp.code3.activity.RecyclerViewStudyActivity;
+import com.example.studyapp.code4.activity.NavStudyActivity;
 import com.example.studyapp.common.acapter.CatalogueListAdapter;
 import com.example.studyapp.common.bean.CatalogueBean;
 
@@ -77,8 +79,15 @@ public class MainActivity extends AppCompatActivity {
 
         CatalogueBean  listBean = new CatalogueBean("通话记录 - ListView ", ListViewStudyActivity.class);
         CatalogueBean recyBean = new CatalogueBean("通话记录 - RecyclerView ", RecyclerViewStudyActivity.class);
+        CatalogueBean navBean = new CatalogueBean("底部导航栏 - RecyclerView ", NavStudyActivity.class);
+
+
+        CatalogueBean allViewBean = new CatalogueBean("组件专题  ", AllViewStudyActivity.class);
+
 
         mCatalogueBeanList.add(listBean);
         mCatalogueBeanList.add(recyBean);
+        mCatalogueBeanList.add(navBean);
+        mCatalogueBeanList.add(allViewBean);
     }
 }

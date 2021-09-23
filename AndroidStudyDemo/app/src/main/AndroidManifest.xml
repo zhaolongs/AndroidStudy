@@ -12,6 +12,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidStudyApplication">
         <activity
+            android:name=".code00.activity.ContextCompatActivity"
+            android:exported="true" />
+        <activity
+            android:name=".common.activity.HomeActivity"
+            android:exported="true" />
+        <activity
+            android:name=".common.activity.StartActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".code3.activity.RecyclerViewStudyListActivity"
             android:exported="true" />
         <activity
@@ -28,16 +43,14 @@
             android:exported="true" />
         <activity
             android:name=".common.activity.MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="true" />
         <activity android:name=".code3.activity.RecyclerViewHorizontalActivity" />
         <activity android:name=".code3.activity.RecyclerViewGridActivity" />
         <activity android:name=".code3.activity.RecyclerViewStaggeredGridActivity" />
+        <activity android:name=".code4.activity.NavStudyActivity" />
+        <activity android:name=".code00.activity.progressbar.ProgressBarViewStudyActivity" />
+        <activity android:name=".code00.activity.AllViewStudyActivity" />
+        <activity android:name=".code00.activity.progressbar.HorizontalProgressBarctivity" />
     </application>
 
 </manifest>
