@@ -1,18 +1,19 @@
-package com.example.studyapp.common.activity;
+package com.example.studyapp.code4.activity;
+
+import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-
-
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Context;
-import android.os.Bundle;
-import android.view.View;
-
 import com.example.studyapp.R;
+import com.example.studyapp.code4.fragment.NavBlankFragment1;
+import com.example.studyapp.code4.fragment.NavBlankFragment2;
+import com.example.studyapp.code4.fragment.NavBlankFragment3;
+import com.example.studyapp.code4.fragment.NavBlankFragment4;
 import com.example.studyapp.common.fragment.BlankFragment1;
 import com.example.studyapp.common.fragment.BlankFragment2;
 import com.example.studyapp.common.fragment.BlankFragment3;
@@ -22,7 +23,7 @@ import com.example.studyapp.databinding.ActivityHomeBinding;
 /**
  * 应用的首页面
  */
-public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
+public class NavHomeActivity1 extends AppCompatActivity implements View.OnClickListener {
 
     private ActivityHomeBinding activityHomeBinding;
 
@@ -45,7 +46,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         //开启事务
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         //创建
-        Fragment nav1Fragment = new BlankFragment1();
+        Fragment nav1Fragment = new NavBlankFragment1();
         //替换当前视图
         fragmentTransaction.add(R.id.fl_home_content, nav1Fragment, "nav_1");
         //显示当前
@@ -83,7 +84,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 //切换页面
                 if (nav1Fragment == null) {
                     //创建
-                    nav1Fragment = new BlankFragment1();
+                    nav1Fragment = new NavBlankFragment1();
                     //替换当前视图
                     fragmentTransaction.add(R.id.fl_home_content, nav1Fragment, "nav_1");
                 }
@@ -109,7 +110,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
                 if (nav2Fragment == null) {
                     //创建
-                    nav2Fragment = new BlankFragment2();
+                    nav2Fragment = new NavBlankFragment2();
                     //替换当前视图
                     fragmentTransaction.add(R.id.fl_home_content, nav2Fragment, "nav_2");
                 }
@@ -136,7 +137,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
                 if (nav3Fragment == null) {
                     //创建
-                    nav3Fragment = new BlankFragment3();
+                    nav3Fragment = new NavBlankFragment3();
                     //替换当前视图
                     fragmentTransaction.add(R.id.fl_home_content, nav3Fragment, "nav_3");
                 }
@@ -160,7 +161,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
                 if (nav4Fragment == null) {
                     //创建
-                    nav4Fragment = new BlankFragment4();
+                    nav4Fragment = new NavBlankFragment4();
                     //替换当前视图
                     fragmentTransaction.add(R.id.fl_home_content, nav4Fragment, "nav_4");
                 }

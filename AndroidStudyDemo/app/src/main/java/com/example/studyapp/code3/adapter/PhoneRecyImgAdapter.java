@@ -67,18 +67,19 @@ public class PhoneRecyImgAdapter extends RecyclerView.Adapter {
          *  参数一 上下文对象
          */
         LayoutInflater layoutInflater = LayoutInflater.from(mContext);
+        int layoutId = R.layout.activity_list2_item;
         /**
          * 将 Layout 文件 加载 View
          * 参数一 布局文件 ID
          * 参数二 不为null 时 会测量这个 parent 的大小来 作为 inflate 的父组件大小参考
          * 参数三 true 将加载的 layout 布局文件 自动添加到 parent 中去
          */
-        int layoutId = R.layout.activity_list2_item;
         if (mIsStaggere) {
             //瀑布流使用 需要填充
             layoutId = R.layout.activity_list2_item;
         }
         View inflate = layoutInflater.inflate(layoutId, parent, false);
+
         CustomHolder customHolder = new CustomHolder(inflate, mIsStaggere);
         return customHolder;
     }

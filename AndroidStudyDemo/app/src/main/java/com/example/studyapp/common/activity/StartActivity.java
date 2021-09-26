@@ -6,11 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.widget.TextView;
 
-import com.example.studyapp.R;
-import com.example.studyapp.code2.activity.PhoneDetailsActivity;
-import com.example.studyapp.code3.activity.RecyclerViewStaggeredGridActivity;
+import com.example.studyapp.code4.activity.NavHomeActivity2;
+import com.example.studyapp.code4.activity.NavHomeActivity3;
 import com.example.studyapp.databinding.ActivityStartBinding;
 
 public class StartActivity extends AppCompatActivity {
@@ -57,7 +55,7 @@ public class StartActivity extends AppCompatActivity {
                 //两类应用 一类是强制登录的 一类是非强制登录的
                 //非强制登录
                 //直接跳转首页面
-                Intent intent = new Intent(StartActivity.this, HomeActivity.class);
+                Intent intent = new Intent(StartActivity.this, NavHomeActivity3.class);
                 StartActivity.this.startActivity(intent);
                 //关闭当前页面
                 finish();

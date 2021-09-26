@@ -9,10 +9,22 @@
     tools:context=".code3.activity.RecyclerViewStudyActivity">
 
     <TextView
-        android:id="@+id/bt_view_binding"
+        android:id="@+id/bt_nav_1"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text=" Android View Binding的使用" />
+        android:text=" 线性布局 + Fragment 实现底部导航切换效果" />
 
+    <TextView
+        android:layout_marginTop="30dp"
+        android:id="@+id/bt_nav_2"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text=" BottomNavigationView 实现底部导航切换效果" />
+    <TextView
+        android:layout_marginTop="30dp"
+        android:id="@+id/bt_nav_3"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text=" BottomNavigationView + Fragment" />
 
 </LinearLayout>

@@ -11,6 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidStudyApplication">
+
+
+        <activity
+            android:name=".code4.activity.NavHomeActivity2"
+            android:exported="true"
+            android:label="@string/title_activity_home2" />
         <activity
             android:name=".code00.activity.ContextCompatActivity"
             android:exported="true" />
@@ -51,6 +57,8 @@
         <activity android:name=".code00.activity.progressbar.ProgressBarViewStudyActivity" />
         <activity android:name=".code00.activity.AllViewStudyActivity" />
         <activity android:name=".code00.activity.progressbar.HorizontalProgressBarctivity" />
+        <activity android:name=".code4.activity.NavHomeActivity1" />
+        <activity android:name=".code4.activity.NavHomeActivity3" />
     </application>
 
 </manifest>

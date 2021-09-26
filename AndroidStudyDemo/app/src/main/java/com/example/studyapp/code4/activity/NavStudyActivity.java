@@ -22,14 +22,24 @@ public class NavStudyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nav_study);
 
-        findViewById(R.id.bt_view_binding).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.bt_nav_1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavStudyActivity.this.startActivity(new Intent(NavStudyActivity.this, RecyclerViewStudyListActivity.class));
+                NavStudyActivity.this.startActivity(new Intent(NavStudyActivity.this, NavHomeActivity1.class));
             }
         });
-
-
+        findViewById(R.id.bt_nav_2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavStudyActivity.this.startActivity(new Intent(NavStudyActivity.this, NavHomeActivity2.class));
+            }
+        });
+        findViewById(R.id.bt_nav_2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavStudyActivity.this.startActivity(new Intent(NavStudyActivity.this, NavHomeActivity3.class));
+            }
+        });
 
     }
 }
