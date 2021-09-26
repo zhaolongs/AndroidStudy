@@ -21,9 +21,6 @@
             android:name=".code00.activity.ContextCompatActivity"
             android:exported="true" />
         <activity
-            android:name=".common.activity.HomeActivity"
-            android:exported="true" />
-        <activity
             android:name=".common.activity.StartActivity"
             android:exported="true">
             <intent-filter>
@@ -59,6 +56,7 @@
         <activity android:name=".code00.activity.progressbar.HorizontalProgressBarctivity" />
         <activity android:name=".code4.activity.NavHomeActivity1" />
         <activity android:name=".code4.activity.NavHomeActivity3" />
+        <activity android:name=".common.activity.HomeActivity" />
     </application>
 
 </manifest>

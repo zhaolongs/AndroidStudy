@@ -55,7 +55,7 @@ public class StartActivity extends AppCompatActivity {
                 //两类应用 一类是强制登录的 一类是非强制登录的
                 //非强制登录
                 //直接跳转首页面
-                Intent intent = new Intent(StartActivity.this, NavHomeActivity3.class);
+                Intent intent = new Intent(StartActivity.this, HomeActivity.class);
                 StartActivity.this.startActivity(intent);
                 //关闭当前页面
                 finish();
