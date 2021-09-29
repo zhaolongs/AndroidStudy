@@ -2,6 +2,7 @@ package com.example.studyapp.common.activity;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +19,7 @@ import com.example.studyapp.code4.fragment.NavBlankFragment2;
 import com.example.studyapp.code4.fragment.NavBlankFragment3;
 import com.example.studyapp.code4.fragment.NavBlankFragment4;
 import com.example.studyapp.databinding.ActivityHome3Binding;
+import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 /**
@@ -32,6 +34,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //绑定 ViewBind
         activityHomeBinding = ActivityHome3Binding.inflate(getLayoutInflater());
+        
         setContentView(activityHomeBinding.getRoot());
 
 
@@ -39,9 +42,10 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 onSelectClick(item.getItemId());
-                return false;
+                return true;
             }
         });
+
 
         //默认显示第一个
         //获取 FragmentManager 管理者 低版本兼容
@@ -56,9 +60,6 @@ public class HomeActivity extends AppCompatActivity {
         fragmentTransaction.show(nav1Fragment);
         fragmentTransaction.commit();
 
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_home2);
-        //BottomNavigationView 与 Fragment 绑定联动
-        NavigationUI.setupWithNavController(activityHomeBinding.navView, navController);
 
     }
 
