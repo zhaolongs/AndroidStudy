@@ -1,4 +1,4 @@
-package com.example.videolistapplication;
+package com.example.videolistapplication.fragment;
 
 import android.content.Context;
 import android.graphics.SurfaceTexture;
@@ -6,11 +6,6 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
@@ -30,16 +25,20 @@ import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
+import com.example.videolistapplication.R;
+
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * A simple {@link Fragment} subclass.
- * Use the {@link BlankFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * TextureView 视频播放的基本使用
  */
-public class BlankFragment extends Fragment {
+public class TextureViewFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -55,7 +54,7 @@ public class BlankFragment extends Fragment {
     private Context mContext;
     private boolean isPrepare = false;
 
-    public BlankFragment() {
+    public TextureViewFragment() {
         // Required empty public constructor
     }
 
@@ -64,8 +63,8 @@ public class BlankFragment extends Fragment {
      * this fragment using the provided parameters.
      */
     // TODO: Rename and change types and number of parameters
-    public static BlankFragment newInstance() {
-        BlankFragment fragment = new BlankFragment();
+    public static TextureViewFragment newInstance() {
+        TextureViewFragment fragment = new TextureViewFragment();
         Bundle args = new Bundle();
 
         fragment.setArguments(args);
@@ -82,8 +81,7 @@ public class BlankFragment extends Fragment {
     }
 
     private TextureView mTextureView;
-    private Button mStartButton;
-    private Button mStopButton;
+
     private ProgressBar mProgressBar;
     private ImageView mPlayImageView;
     private SeekBar mSeekBar;
@@ -97,7 +95,7 @@ public class BlankFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_blank, container, false);
+        View view = inflater.inflate(R.layout.fragment_texture_view, container, false);
         mTextureView = view.findViewById(R.id.tv_texture_view);
         mProgressBar = view.findViewById(R.id.pb_loading);
         mPlayImageView = view.findViewById(R.id.iv_video_play);
@@ -107,7 +105,7 @@ public class BlankFragment extends Fragment {
         mCurrentTimeTextView = view.findViewById(R.id.tv_current_time);
         mTotalTimeTextView = view.findViewById(R.id.tv_total_time);
         mControllerFrameLayout = view.findViewById(R.id.fl_controller);
-        mControllerLinLayout= view.findViewById(R.id.ll_progress);
+        mControllerLinLayout = view.findViewById(R.id.ll_progress);
 
 
         //设置拖动监听
@@ -133,9 +131,9 @@ public class BlankFragment extends Fragment {
     /**
      * 隐藏
      */
-    void hideControllerFunction(){
+    void hideControllerFunction() {
         mPlayImageView.setVisibility(View.GONE);
-        if(mControllerLinLayout.getVisibility()==View.VISIBLE) {
+        if (mControllerLinLayout.getVisibility() == View.VISIBLE) {
             //加载一下动画
             Animation animation = AnimationUtils.loadAnimation(this.getContext(), R.anim.bottom_exit);
             //设置一下动画监听
@@ -163,9 +161,9 @@ public class BlankFragment extends Fragment {
     /**
      * 显示
      */
-    void showControllerFunction(){
+    void showControllerFunction() {
         mPlayImageView.setVisibility(View.VISIBLE);
-        if(mControllerLinLayout.getVisibility()==View.INVISIBLE) {
+        if (mControllerLinLayout.getVisibility() == View.INVISIBLE) {
             //加载一下动画
             Animation animation = AnimationUtils.loadAnimation(this.getContext(), R.anim.bottom_enter);
             //设置一下动画监听
@@ -259,7 +257,7 @@ public class BlankFragment extends Fragment {
 
                 }
             } else if (what == 1) {
-                if(mediaPlayer.isPlaying()) {
+                if (mediaPlayer.isPlaying()) {
                     //隐藏控制层
                     hideControllerFunction();
                 }
