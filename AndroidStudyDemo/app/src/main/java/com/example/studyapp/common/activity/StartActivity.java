@@ -7,8 +7,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 
-import com.example.studyapp.code4.activity.NavHomeActivity2;
-import com.example.studyapp.code4.activity.NavHomeActivity3;
 import com.example.studyapp.databinding.ActivityStartBinding;
 
 public class StartActivity extends AppCompatActivity {

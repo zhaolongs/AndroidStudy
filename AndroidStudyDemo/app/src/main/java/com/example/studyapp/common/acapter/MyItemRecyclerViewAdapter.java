@@ -56,7 +56,7 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
         public ImageView imageView;
 
         public TextureView videoView;
-        private MediaPlayer mPlayer;
+
 
         public ViewHolder(FragmentItemBinding binding) {
             super(binding.getRoot());
@@ -79,8 +79,6 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
             imageView.setMaxHeight(widthPixels * 2);
             imageView.setMaxWidth(widthPixels);
 
-
-            videoView = binding.videoView;
 
 
         }
