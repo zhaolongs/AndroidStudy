@@ -31,6 +31,9 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * 自定义View 封装视频播放控制
+ */
 public class CustomVideoPlayerView extends FrameLayout {
     public CustomVideoPlayerView(@NonNull Context context) {
         super(context);
@@ -285,7 +288,7 @@ public class CustomVideoPlayerView extends FrameLayout {
      */
     private void startPlay() {
         if (mCustomVideoInterface != null) {
-            mCustomVideoInterface.onTextureCreate(mediaPlayer, mCustomVideoStatueInterface);
+            mCustomVideoInterface.onTextureCreate(mediaPlayer, mCustomVideoStatueInterface,position);
         }
         hideControllerFunction();
         //开始播放
@@ -389,5 +392,10 @@ public class CustomVideoPlayerView extends FrameLayout {
         if (mediaPlayer != null && mediaPlayer.isPlaying()) {
             mediaPlayer.stop();
         }
+    }
+
+    private  int position;
+    public void setPosition(int position) {
+        this.position = position;
     }
 }

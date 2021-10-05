@@ -21,8 +21,6 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
 
     private List<VideoBean> mVideoBeanList;
     private Context mContext;
-    //记录之前播放的条目下标
-    public int currentPosition = -1;
 
     private ViewToFragmentInterface mCustomVideoInterface;
 
@@ -41,7 +39,7 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mVideoBeanList.get(position);
-        holder.setData();
+        holder.setData(position);
     }
 
     @Override
@@ -72,8 +70,8 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
         }
 
 
-        public void setData() {
-
+        public void setData(int position) {
+            customVideoPlayerView.setPosition(position);
 
         }
     }
