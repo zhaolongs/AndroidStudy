@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         //开启事务
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         //创建
-        Fragment nav1Fragment = BlankFragment.newInstance();
+        Fragment nav1Fragment = ItemFragment.newInstance(10);
         //替换当前视图
         fragmentTransaction.add(R.id.fl_home_content, nav1Fragment, "nav_1");
         //显示当前

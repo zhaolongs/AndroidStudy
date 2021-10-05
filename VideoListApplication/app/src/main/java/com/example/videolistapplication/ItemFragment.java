@@ -1,6 +1,7 @@
 package com.example.videolistapplication;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -97,24 +98,40 @@ public class ItemFragment extends Fragment {
             videoBeanList.add(videoBean);
         }
         myItemRecyclerViewAdapter = new MyItemRecyclerViewAdapter(videoBeanList, getContext());
+        //设置通信通道
+        myItemRecyclerViewAdapter.setCustomVideoInterface(mCustomVideoInterface);
         recyclerView.setAdapter(myItemRecyclerViewAdapter);
 
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    /**
+     * 用来记录当前播放 Item 的 MediaPlayer
+     */
+    private MediaPlayer mMediaPlayer;
+    /**
+     * 接口回调  Fragment 到 视频播放 View 的通信通道
+     */
+    private FragmentToViewInterface mCustomVideoStatueInterface;
+    /**
+     * 接口回调  视频播放 View 到 Fragment 的通信通道
+     */
+    private ViewToFragmentInterface mCustomVideoInterface = new ViewToFragmentInterface() {
+        @Override
+        public void onTextureCreate(MediaPlayer mediaPlayer, FragmentToViewInterface videoStatueInterface) {
+            //暂停上一个视频播放
+            if (mMediaPlayer != null && mMediaPlayer.isPlaying()) {
+                mMediaPlayer.pause();
+            }
+            //通知更新控制层View显示
+            if (mCustomVideoStatueInterface != null) {
+                mCustomVideoStatueInterface.pause();
+            }
+            //记录当前播放的MediaPlayer
+            mMediaPlayer = mediaPlayer;
+            //记录当前播放的通信通道
+            mCustomVideoStatueInterface = videoStatueInterface;
+        }
+    };
 
 
     private RecyclerView.OnScrollListener onScrollListener = new RecyclerView.OnScrollListener() {
@@ -132,7 +149,7 @@ public class ItemFragment extends Fragment {
             int lastVisibleItemPosition = linearLayoutManager.findLastVisibleItemPosition();
             //获取播放条目的下标
             int currentPosition = myItemRecyclerViewAdapter.currentPosition;
-            if((firstVisibleItemPosition > currentPosition || lastVisibleItemPosition < currentPosition) && currentPosition > -1){
+            if ((firstVisibleItemPosition > currentPosition || lastVisibleItemPosition < currentPosition) && currentPosition > -1) {
                 //让播放隐藏的条目停止
                 MediaHelper.release();
                 myItemRecyclerViewAdapter.currentPosition = -1;

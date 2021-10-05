@@ -5,24 +5,18 @@ import android.graphics.SurfaceTexture;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
-import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -30,72 +24,41 @@ import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link BlankFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class BlankFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-    private Surface surface1;
-    private MediaPlayer mediaPlayer;
-
-    private Context mContext;
-    private boolean isPrepare = false;
-
-    public BlankFragment() {
-        // Required empty public constructor
+public class CustomVideoPlayerView extends FrameLayout {
+    public CustomVideoPlayerView(@NonNull Context context) {
+        super(context);
+        initView(context);
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static BlankFragment newInstance() {
-        BlankFragment fragment = new BlankFragment();
-        Bundle args = new Bundle();
-
-        fragment.setArguments(args);
-        return fragment;
+    public CustomVideoPlayerView(@NonNull Context context, @Nullable AttributeSet attrs) {
+        super(context, attrs);
+        initView(context);
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+    public CustomVideoPlayerView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        initView(context);
     }
 
-    private TextureView mTextureView;
-    private ProgressBar mProgressBar;
-    private ImageView mPlayImageView;
-    private SeekBar mSeekBar;
+    public CustomVideoPlayerView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+        initView(context);
+    }
 
-    private TextView mCurrentTimeTextView;
-    private TextView mTotalTimeTextView;
+    private void initView(Context context) {
+        //加载布局文件
+        //参数一 布局文件
+        //参数二 目标布局 这里的 this 就是当前自己
+        //参数三 true 将参数一的布局文件自动添加到参数二中的目标布局文件中
+        View view = LayoutInflater.from(context).inflate(R.layout.video_player_view, this, true);
 
-    private FrameLayout mControllerFrameLayout;
-    private LinearLayout mControllerLinLayout;
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_blank, container, false);
         mTextureView = view.findViewById(R.id.tv_texture_view);
         mProgressBar = view.findViewById(R.id.pb_loading);
         mPlayImageView = view.findViewById(R.id.iv_video_play);
@@ -105,7 +68,7 @@ public class BlankFragment extends Fragment {
         mCurrentTimeTextView = view.findViewById(R.id.tv_current_time);
         mTotalTimeTextView = view.findViewById(R.id.tv_total_time);
         mControllerFrameLayout = view.findViewById(R.id.fl_controller);
-        mControllerLinLayout= view.findViewById(R.id.ll_progress);
+        mControllerLinLayout = view.findViewById(R.id.ll_progress);
 
 
         //设置拖动监听
@@ -125,15 +88,47 @@ public class BlankFragment extends Fragment {
                 return true;
             }
         });
-        return view;
+
+        onActivityCreated();
     }
+
+    private Surface surface1;
+    private MediaPlayer mediaPlayer;
+
+    /**
+     * 消息通信通道
+     * Fragment 中向 View 中发送消息
+     */
+    private FragmentToViewInterface mCustomVideoStatueInterface = new FragmentToViewInterface() {
+
+        @Override
+        public void pause() {
+            //暂停播放后 需要显示控制层
+            showControllerFunction();
+        }
+    };
+
+    private Context mContext;
+    private boolean isPrepare = false;
+
+
+    private TextureView mTextureView;
+    private ProgressBar mProgressBar;
+    private ImageView mPlayImageView;
+    private SeekBar mSeekBar;
+
+    private TextView mCurrentTimeTextView;
+    private TextView mTotalTimeTextView;
+
+    private FrameLayout mControllerFrameLayout;
+    private LinearLayout mControllerLinLayout;
 
     /**
      * 隐藏
      */
-    void hideControllerFunction(){
+    void hideControllerFunction() {
         mPlayImageView.setVisibility(View.GONE);
-        if(mControllerLinLayout.getVisibility()==View.VISIBLE) {
+        if (mControllerLinLayout.getVisibility() == View.VISIBLE) {
             //加载一下动画
             Animation animation = AnimationUtils.loadAnimation(this.getContext(), R.anim.bottom_exit);
             //设置一下动画监听
@@ -161,9 +156,9 @@ public class BlankFragment extends Fragment {
     /**
      * 显示
      */
-    void showControllerFunction(){
+    void showControllerFunction() {
         mPlayImageView.setVisibility(View.VISIBLE);
-        if(mControllerLinLayout.getVisibility()==View.INVISIBLE) {
+        if (mControllerLinLayout.getVisibility() == View.INVISIBLE) {
             //加载一下动画
             Animation animation = AnimationUtils.loadAnimation(this.getContext(), R.anim.bottom_enter);
             //设置一下动画监听
@@ -190,9 +185,9 @@ public class BlankFragment extends Fragment {
         }
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+
+    public void onActivityCreated() {
+
 
         //第一步
         //设置监听
@@ -223,11 +218,7 @@ public class BlankFragment extends Fragment {
                         showControllerFunction();
                         mPlayImageView.setImageResource(R.mipmap.video_play);
                     } else {
-                        mediaPlayer.start();
-                        //隐藏开始播放按钮
-                        hideControllerFunction();
-                        //开启定时
-                        mHandelr.sendEmptyMessage(0);
+                        startPlay();
                     }
                 }
             }
@@ -253,11 +244,14 @@ public class BlankFragment extends Fragment {
                     Message message = Message.obtain();
                     message.what = 0;
                     mHandelr.sendMessageDelayed(message, 100);
-
-
+                    if (mPlayImageView.getVisibility() == VISIBLE) {
+                        mPlayImageView.setImageResource(R.mipmap.video_pause);
+                    }
+                } else {
+                    mPlayImageView.setImageResource(R.mipmap.video_play);
                 }
             } else if (what == 1) {
-                if(mediaPlayer.isPlaying()) {
+                if (mediaPlayer.isPlaying()) {
                     //隐藏控制层
                     hideControllerFunction();
                 }
@@ -286,10 +280,37 @@ public class BlankFragment extends Fragment {
         }
     };
 
+    /**
+     * 开始播放
+     */
+    private void startPlay() {
+        if (mCustomVideoInterface != null) {
+            mCustomVideoInterface.onTextureCreate(mediaPlayer, mCustomVideoStatueInterface);
+        }
+        hideControllerFunction();
+        //开始播放
+        mediaPlayer.start();
+        //隐藏进度
+        mProgressBar.setVisibility(View.GONE);
+        //设置总时长
+        int duration = mediaPlayer.getDuration();
+        mSeekBar.setMax(duration);
+        //格式化一下时间
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("mm:ss");
+        String format = simpleDateFormat.format(new Date(duration));
+        //设置一次 总时间
+        mTotalTimeTextView.setText(format);
+        //设置当前时间
+        mCurrentTimeTextView.setText("00:00");
+        //设置个计时器
+        Message message = Message.obtain();
+        message.what = 0;
+        mHandelr.sendMessageDelayed(message, 100);
+    }
+
     private TextureView.SurfaceTextureListener mSurfaceTextureListener = new TextureView.SurfaceTextureListener() {
         @Override
         public void onSurfaceTextureAvailable(@NonNull SurfaceTexture surface, int width, int height) {
-
             //第二步
             //创建Surface
             surface1 = new Surface(surface);
@@ -307,25 +328,7 @@ public class BlankFragment extends Fragment {
                 mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                     @Override
                     public void onPrepared(MediaPlayer mp) {
-                        //开始播放
-                        mediaPlayer.start();
                         isPrepare = true;
-                        //隐藏进度
-                        mProgressBar.setVisibility(View.GONE);
-                        //设置总时长
-                        int duration = mediaPlayer.getDuration();
-                        mSeekBar.setMax(duration);
-                        //格式化一下时间
-                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("mm:ss");
-                        String format = simpleDateFormat.format(new Date(duration));
-                        //设置一次 总时间
-                        mTotalTimeTextView.setText(format);
-                        //设置当前时间
-                        mCurrentTimeTextView.setText("00:00");
-                        //设置个计时器
-                        Message message = Message.obtain();
-                        message.what = 0;
-                        mHandelr.sendMessageDelayed(message, 100);
                     }
                 });
                 //加载错误监听
@@ -339,7 +342,7 @@ public class BlankFragment extends Fragment {
                 mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                     @Override
                     public void onCompletion(MediaPlayer mp) {
-
+                        Log.e("video", "播放完成");
                     }
                 });
                 //缓存监听
@@ -349,6 +352,8 @@ public class BlankFragment extends Fragment {
 
                     }
                 });
+                //异步加载
+                mediaPlayer.prepareAsync();
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -371,4 +376,18 @@ public class BlankFragment extends Fragment {
 
         }
     };
+
+    private ViewToFragmentInterface mCustomVideoInterface;
+
+    public void setCustomVideoInterface(ViewToFragmentInterface videoInterface) {
+        mCustomVideoInterface = videoInterface;
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+            mediaPlayer.stop();
+        }
+    }
 }
