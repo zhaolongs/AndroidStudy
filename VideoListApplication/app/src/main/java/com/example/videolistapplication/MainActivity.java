@@ -15,13 +15,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        int pageFlag = getIntent().getIntExtra("pageFlag", 1);
+
         //默认显示第一个
         //获取 FragmentManager 管理者 低版本兼容
         FragmentManager fragmentManager = getSupportFragmentManager();
         //开启事务
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         //创建
-        Fragment nav1Fragment = ItemFragment.newInstance(10);
+        Fragment nav1Fragment;
+        if (pageFlag == 1) {
+            nav1Fragment = BlankFragment.newInstance();
+        } else {
+            nav1Fragment = ItemFragment.newInstance(10);
+        }
         //替换当前视图
         fragmentTransaction.add(R.id.fl_home_content, nav1Fragment, "nav_1");
         //显示当前
