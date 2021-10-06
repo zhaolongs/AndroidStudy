@@ -17,8 +17,8 @@ import com.example.studyapp.code00.activity.AllViewStudyActivity;
 import com.example.studyapp.code2.activity.ListViewStudyActivity;
 import com.example.studyapp.code3.activity.RecyclerViewStudyActivity;
 import com.example.studyapp.code4.activity.NavStudyActivity;
+import com.example.studyapp.code5.activity.HttpActivity;
 import com.example.studyapp.common.acapter.CatalogueListAdapter;
-import com.example.studyapp.common.activity.MainActivity;
 import com.example.studyapp.common.bean.CatalogueBean;
 
 import java.util.ArrayList;
@@ -101,10 +101,13 @@ public class NavBlankFragment3 extends Fragment {
 
         CatalogueBean allViewBean = new CatalogueBean("组件专题  ", AllViewStudyActivity.class);
 
+        CatalogueBean okhttpBean = new CatalogueBean("okhttp 专题  ", HttpActivity.class);
+
 
         mCatalogueBeanList.add(listBean);
         mCatalogueBeanList.add(recyBean);
         mCatalogueBeanList.add(navBean);
         mCatalogueBeanList.add(allViewBean);
+        mCatalogueBeanList.add(okhttpBean);
     }
 }

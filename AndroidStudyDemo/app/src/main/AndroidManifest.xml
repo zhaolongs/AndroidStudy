@@ -3,16 +3,22 @@
     package="com.example.studyapp">
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
+        android:networkSecurityConfig="@xml/network_config"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidStudyApplication">
-
-
+        <activity
+            android:name=".code5.activity.UserListActivity"
+            android:exported="true" />
+        <activity
+            android:name=".code5.activity.HttpActivity"
+            android:exported="true" />
         <activity
             android:name=".code4.activity.NavHomeActivity2"
             android:exported="true"

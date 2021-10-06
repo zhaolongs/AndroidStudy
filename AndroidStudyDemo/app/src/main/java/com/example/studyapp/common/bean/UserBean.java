@@ -1,7 +1,10 @@
 package com.example.studyapp.common.bean;
 
-public class UserBean {
+import java.io.Serializable;
 
+public class UserBean implements Serializable {
+
+    private long id;
     private String userName;
     private String userImage;
     private int userId;
@@ -28,5 +31,23 @@ public class UserBean {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "UserBean{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", userImage='" + userImage + '\'' +
+                ", userId=" + userId +
+                '}';
     }
 }
