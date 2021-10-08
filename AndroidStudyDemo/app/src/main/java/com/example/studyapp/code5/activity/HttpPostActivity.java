@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.studyapp.R;
 import com.example.studyapp.code5.adapter.UserListRecyAdapter;
 import com.example.studyapp.common.bean.UserBean;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,18 +21,23 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class HttpPostActivity extends AppCompatActivity {
 
     private String httpUrl = "http://192.168.40.200:8080/getUserList";
-    private RecyclerView recyclerView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,16 +45,34 @@ public class HttpPostActivity extends AppCompatActivity {
         setContentView(R.layout.activity_http_post);
 
 
-        recyclerView = findViewById(R.id.rv_user_list);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         //创建Client
         OkHttpClient okHttpClient = new OkHttpClient();
+
+        //构建封装参数
+        FormBody.Builder formBuild = new FormBody.Builder();
+        formBuild.add("userName","李四");
+        formBuild.add("userAge","28");
+        FormBody formBody = formBuild.build();
+
+
+        /**
+         * 发送JSON数据
+         */
+        Map<String,Object> map = new HashMap<>();
+        map.put("userName","王五");
+        map.put("userAge",34);
+        //将Map 转 JSON
+        Gson gson = new Gson();
+        String json = gson.toJson(map);
+
+        RequestBody requestBody = FormBody.create(MediaType.parse("application/json;charset-utf-8"),json);
+
         //创建构建
         Request.Builder builder = new Request.Builder();
         //设置数据
         builder.url(httpUrl);
-        Request build = builder.get().build();
+        Request build = builder.post(requestBody).build();
 
         //发起网络请求
         Call call = okHttpClient.newCall(build);
@@ -72,30 +96,6 @@ public class HttpPostActivity extends AppCompatActivity {
                     JSONObject jsonObject = new JSONObject(responseString);
                     //获取对应的数据
                     int code = jsonObject.getInt("code");
-                    //获取列表数据
-                    JSONArray data = jsonObject.getJSONArray("data");
-                    //解析列表数据
-                    List<UserBean> userBeanList = new ArrayList<>();
-                    for (int i = 0; i < data.length(); i++) {
-                        //获取每一个对象
-                        JSONObject itemObj = (JSONObject) data.get(i);
-                        //转化为自定义对象
-                        UserBean userBean = new UserBean();
-                        userBean.setUserName(itemObj.getString("userName"));
-                        userBean.setId(itemObj.getLong("id"));
-
-                        userBeanList.add(userBean);
-                    }
-
-                    //设置数据显示
-                    mHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            setData(userBeanList);
-                        }
-                    });
-
-
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -105,13 +105,6 @@ public class HttpPostActivity extends AppCompatActivity {
         });
     }
 
-    private Handler mHandler = new Handler(Looper.getMainLooper());
-    private void setData(List<UserBean> userBeanList) {
-        //创建列表适配器
-        UserListRecyAdapter userListRecyAdapter = new UserListRecyAdapter(userBeanList,this);
-        //设置数据显示
-        recyclerView.setAdapter(userListRecyAdapter);
-    }
 
 
 }
