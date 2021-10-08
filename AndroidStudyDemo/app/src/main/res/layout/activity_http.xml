@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal"
+    android:gravity="center"
     android:orientation="vertical"
     android:padding="12dp"
     tools:context=".code5.activity.HttpActivity">
@@ -13,6 +13,23 @@
         android:id="@+id/tv_get_user_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="获取用户列表信息" />
+        android:background="@drawable/bg_button_shape"
+        android:gravity="center"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:text="获取用户列表信息"
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:id="@+id/tv_post"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_button_shape"
+        android:gravity="center"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:text="Http Post 请求"
+        android:textColor="#ffffff" />
 
 </LinearLayout>

@@ -24,6 +24,12 @@ public class HttpActivity extends AppCompatActivity {
             }
         });
 
+        activityHttpBinding.tvPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                HttpActivity.this.startActivity(new Intent(HttpActivity.this, HttpPostActivity.class));
+            }
+        });
     }
 
 

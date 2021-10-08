@@ -63,6 +63,7 @@
         <activity android:name=".code4.activity.NavHomeActivity1" />
         <activity android:name=".code4.activity.NavHomeActivity3" />
         <activity android:name=".common.activity.HomeActivity" />
+        <activity android:name=".code5.activity.HttpPostActivity" />
     </application>
 
 </manifest>
